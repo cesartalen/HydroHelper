@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 
 const TrackPage = () => {
   const { data: session, status } = useSession()
+  const [goalPercentage, setGoalPercentage] = useState(0)
 
   if(status === "unauthenticated") {
     redirect('/')
@@ -20,7 +21,11 @@ const TrackPage = () => {
   }
 
   const getWater = async () => {
-    setWater((await todayWaterlog(session?.user?.id)).amount)
+    const waterData = await todayWaterlog(session?.user?.id)
+    const amount = waterData.amount
+    setWater(amount)
+    const percentage = ((amount * 100) / 3500)
+    setGoalPercentage(percentage)
   }
 
   useEffect(() => {
@@ -32,6 +37,9 @@ const TrackPage = () => {
         <div className='rounded-xl border px-6 py-4 mx-6 my-6 md:w-3/4'>
           <p>Welcome {session?.user?.name} : {session?.user?.id}</p>
           <p>{water}</p>
+          <div className="w-full bg-gray-200 rounded-full h-2.5">
+            <div className="bg-cyan-500 h-2.5 rounded-full" style={{width: `${goalPercentage}%`}}></div>
+          </div>
           <button onClick={handleClick}>Update Water</button>
           <br/>
           <button onClick={() => signOut()}>Logout</button>
