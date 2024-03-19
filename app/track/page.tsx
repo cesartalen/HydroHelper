@@ -28,11 +28,17 @@ const TrackPage = () => {
   }, []);
   return (
     <>
-      <p>Welcome {session?.user?.name} : {session?.user?.id}</p>
-      <p>{water}</p>
-      <button onClick={handleClick}>Update Water</button>
-      <br/>
-      <button onClick={() => signOut()}>Logout</button>
+      <main className='flex break-all flex-col md:flex-row'>
+        <div className='rounded-xl border px-6 py-4 mx-6 my-6 md:w-3/4'>
+          <p>Welcome {session?.user?.name} : {session?.user?.id}</p>
+          <p>{water}</p>
+          <button onClick={handleClick}>Update Water</button>
+          <br/>
+          <button onClick={() => signOut()}>Logout</button>
+        </div>
+        <div className='rounded-xl border px-6 py-4 mx-6 my-6 md:w-1/4 '>
+        </div>
+      </main>
     </>
   )
 }
