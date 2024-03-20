@@ -51,7 +51,7 @@ const TrackPage = () => {
           <p>Welcome {session?.user?.name} : {session?.user?.id}</p>
           <p>{water}</p>
           <div className="w-full bg-gray-200 rounded-full h-2.5">
-            <div className="bg-cyan-500 h-2.5 rounded-full" style={{width: `${(water * 100) / goal}%`}}></div>
+            <div className="bg-cyan-500 h-2.5 rounded-full" style={{width: `${Math.min((water * 100) / goal, 100)}%`}}></div>
           </div>
           <button onClick={() => handleWaterClick(waterPreset)}>Update Water</button>
           <br/>
