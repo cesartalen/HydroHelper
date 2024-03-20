@@ -11,6 +11,7 @@ const TrackPage = () => {
   const { data: session, status } = useSession()
   const [goalPercentage, setGoalPercentage] = useState(0)
   const [goal, setGoal] = useState(0)
+  const [waterPreset, setWaterPreset] = useState(0)
 
   if(status === "unauthenticated") {
     redirect('/')
@@ -19,7 +20,7 @@ const TrackPage = () => {
   const [water, setWater] = useState(0)
 
   const handleClick = async () => {
-    await updateWater(session?.user?.id, 250).then(() => { getWater() })
+    await updateWater(session?.user?.id, waterPreset).then(() => { getWater() })
   }
 
   const getUserPreferences = async () => {
@@ -27,6 +28,7 @@ const TrackPage = () => {
 
     if(preferences) {
       setGoal(preferences.dailyGoal)
+      setWaterPreset(preferences.waterPreset)
     }
   }
 
