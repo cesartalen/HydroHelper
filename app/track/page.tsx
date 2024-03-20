@@ -1,5 +1,6 @@
 "use client"
 
+import { getPreferences } from '@/actions/get-preferences'
 import { todayWaterlog } from '@/actions/today-waterlog'
 import { updateWater } from '@/actions/update-water'
 import { useSession, signOut } from 'next-auth/react'
@@ -9,6 +10,7 @@ import { useEffect, useState } from 'react'
 const TrackPage = () => {
   const { data: session, status } = useSession()
   const [goalPercentage, setGoalPercentage] = useState(0)
+  const [goal, setGoal] = useState(0)
 
   if(status === "unauthenticated") {
     redirect('/')
@@ -20,6 +22,14 @@ const TrackPage = () => {
     await updateWater(session?.user?.id, 250).then(() => { getWater() })
   }
 
+  const getUserPreferences = async () => {
+    const preferences = await getPreferences(session?.user?.id)
+
+    if(preferences) {
+      setGoal(preferences.dailyGoal)
+    }
+  }
+
   const getWater = async () => {
     const waterData = await todayWaterlog(session?.user?.id)
     const amount = waterData.amount
@@ -29,7 +39,8 @@ const TrackPage = () => {
   }
 
   useEffect(() => {
-    getWater();
+    getWater()
+    getUserPreferences()
   }, []);
   return (
     <>
@@ -38,7 +49,7 @@ const TrackPage = () => {
           <p>Welcome {session?.user?.name} : {session?.user?.id}</p>
           <p>{water}</p>
           <div className="w-full bg-gray-200 rounded-full h-2.5">
-            <div className="bg-cyan-500 h-2.5 rounded-full" style={{width: `${goalPercentage}%`}}></div>
+            <div className="bg-cyan-500 h-2.5 rounded-full" style={{width: `${(water * 100) / goal}%`}}></div>
           </div>
           <button onClick={handleClick}>Update Water</button>
           <br/>
