@@ -19,8 +19,8 @@ const TrackPage = () => {
 
   const [water, setWater] = useState(0)
 
-  const handleClick = async () => {
-    await updateWater(session?.user?.id, waterPreset).then(() => { getWater() })
+  const handleWaterClick = async (amount: number) => {
+    await updateWater(session?.user?.id, amount).then(() => { getWater() })
   }
 
   const getUserPreferences = async () => {
@@ -53,7 +53,7 @@ const TrackPage = () => {
           <div className="w-full bg-gray-200 rounded-full h-2.5">
             <div className="bg-cyan-500 h-2.5 rounded-full" style={{width: `${(water * 100) / goal}%`}}></div>
           </div>
-          <button onClick={handleClick}>Update Water</button>
+          <button onClick={() => handleWaterClick(waterPreset)}>Update Water</button>
           <br/>
           <button onClick={() => signOut()}>Logout</button>
         </div>
