@@ -3,11 +3,19 @@
 import { db } from '@/lib/db'
 
 export const getPreferences = async(userId: any) => {
-  const userPreferences = await db.userTrackerPreset.findUnique({
+  let userPreferences = await db.userTrackerPreset.findUnique({
     where: {
       id: userId,
     }
   })
+  
+  if(!userPreferences) {
+    userPreferences = await db.userTrackerPreset.create({
+      data: {
+        userId: userId,
+      }
+    })
+  }
 
   return userPreferences 
 }
