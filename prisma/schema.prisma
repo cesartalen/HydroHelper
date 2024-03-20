@@ -49,7 +49,7 @@ model UserTrackerPreset {
   id          String @id @default(cuid()) @map("_id")
   dailyGoal   Int    @default(3500)
   waterPreset Int    @default(250)
-  userId      String
+  userId      String @unique
   user        User   @relation(fields: [userId], references: [id])
 }
 

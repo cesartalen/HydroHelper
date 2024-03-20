@@ -5,7 +5,7 @@ import { db } from '@/lib/db'
 export const getPreferences = async(userId: any) => {
   let userPreferences = await db.userTrackerPreset.findUnique({
     where: {
-      id: userId,
+      userId: userId,
     }
   })
   
@@ -16,6 +16,5 @@ export const getPreferences = async(userId: any) => {
       }
     })
   }
-
   return userPreferences 
 }
