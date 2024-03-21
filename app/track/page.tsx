@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react'
 
 const TrackPage = () => {
   const { data: session, status } = useSession()
-  const [goalPercentage, setGoalPercentage] = useState(0)
   const [goal, setGoal] = useState(0)
   const [waterPreset, setWaterPreset] = useState(0)
   const [loading, setLoading] = useState(true)
@@ -39,8 +38,6 @@ const TrackPage = () => {
     const waterData = await todayWaterlog(session?.user?.id)
     const amount = waterData.amount
     setWater(amount)
-    const percentage = ((amount * 100) / 3500)
-    setGoalPercentage(percentage)
   }
 
   useEffect(() => {
