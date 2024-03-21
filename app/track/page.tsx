@@ -3,6 +3,8 @@
 import { getPreferences } from '@/actions/get-preferences'
 import { todayWaterlog } from '@/actions/today-waterlog'
 import { updateWater } from '@/actions/update-water'
+import { WaterDisplay } from '@/components/tracker/water-display'
+import { WaterProgressBar } from '@/components/tracker/water-progress-bar'
 import { useSession, signOut } from 'next-auth/react'
 import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -25,7 +27,7 @@ const TrackPage = () => {
 
   const getUserPreferences = async () => {
     const preferences = await getPreferences(session?.user?.id)
-
+    console.log(preferences)
     if(preferences) {
       setGoal(preferences.dailyGoal)
       setWaterPreset(preferences.waterPreset)
@@ -55,10 +57,8 @@ const TrackPage = () => {
           ): (
             <>
               <p>Welcome {session?.user?.name} : {session?.user?.id}</p>
-              <p>{water}</p>
-              <div className="w-full bg-gray-200 rounded-full h-2.5">
-                <div className="bg-cyan-500 h-2.5 rounded-full" style={{width: `${Math.min((water * 100) / goal, 100)}%`}}></div>
-              </div>
+              <WaterDisplay water={water}/>
+              <WaterProgressBar water={water} goal={goal}/>
               <button onClick={() => handleWaterClick(waterPreset)}>Update Water</button>
               <br/>
               <button onClick={() => signOut()}>Logout</button>
