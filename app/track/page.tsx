@@ -3,6 +3,7 @@
 import { getPreferences } from '@/actions/get-preferences'
 import { todayWaterlog } from '@/actions/today-waterlog'
 import { updateWater } from '@/actions/update-water'
+import { LoadingIndicator } from '@/components/common/loading-indicator'
 import { WaterDisplay } from '@/components/tracker/water-display'
 import { WaterProgressBar } from '@/components/tracker/water-progress-bar'
 import { useSession, signOut } from 'next-auth/react'
@@ -52,7 +53,7 @@ const TrackPage = () => {
         <div className='rounded-xl border px-6 py-4 mx-6 my-6 md:w-3/4'>
           {loading ? (
             <>
-              <p>Loading...</p>
+              <LoadingIndicator />
             </>
           ): (
             <>
