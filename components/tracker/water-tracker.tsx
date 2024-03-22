@@ -2,6 +2,7 @@ import { todayWaterlog } from '@/actions/today-waterlog'
 import { updateWater } from '@/actions/update-water'
 import { signOut } from 'next-auth/react'
 import { useEffect, useState } from 'react'
+import { LoadingIndicator } from '../common/loading-indicator'
 
 export const WaterTracker = ({name, userId, goal, waterPreset} : {name : any, userId : any, goal: number, waterPreset: number }) => {
   const [water, setWater] = useState(0)
@@ -26,7 +27,7 @@ export const WaterTracker = ({name, userId, goal, waterPreset} : {name : any, us
   return (
     <div className='rounded-xl border px-6 py-4 mx-6 md:w-3/4'>
       {loading ? (
-        <p>Loading...</p>
+        <LoadingIndicator/>
       ) : (
         <>
           <p>Welcome {name} : {userId}</p>
