@@ -3,6 +3,7 @@ import { updateWater } from '@/actions/update-water'
 import { signOut } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import { LoadingIndicator } from '../common/loading-indicator'
+import { WaterAddCustom } from './water-add-custom'
 
 export const WaterTracker = ({name, userId, goal, waterPreset} : {name : any, userId : any, goal: number, waterPreset: number }) => {
   const [water, setWater] = useState(0)
@@ -37,6 +38,7 @@ export const WaterTracker = ({name, userId, goal, waterPreset} : {name : any, us
           </div>
           <button onClick={() => handleWaterClick(waterPreset)}>Update Water</button>
           <br />
+          <WaterAddCustom addWater={handleWaterClick}/>
           <button onClick={() => signOut()}>Logout</button>
         </>
       )}
