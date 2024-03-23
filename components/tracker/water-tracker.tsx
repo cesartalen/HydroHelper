@@ -26,7 +26,7 @@ export const WaterTracker = ({name, userId, goal, waterPreset} : {name : any, us
   }, [userId])
 
   return (
-    <div className='rounded-xl border px-6 py-4 mx-6 md:w-3/4'>
+    <div className='rounded-xl border px-6 py-4 mx-6 md:w-2/3 xl:w-3/4'>
       {loading ? (
         <LoadingIndicator/>
       ) : (

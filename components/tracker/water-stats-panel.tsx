@@ -16,9 +16,10 @@ export const WaterStatsPanel = ({userId} : {userId: any}) => {
     fetchWaterLogs()
   }, [])
   return(
-    <div className='rounded-xl border px-6 py-4 mx-6 md:w-1/4'>
+    <div className='rounded-xl border px-6 py-4 mx-6 md:w-1/3 xl:w-1/4'>
       <ul>
-        {<a>Average this week: {Math.floor(waterLogs.reduce((sum, log) => sum + log.amount, 0) / waterLogs.length)} ml</a>}
+        <p>Average this week:</p> 
+        {<p className='font-bold text-cyan-700'>{Math.floor(waterLogs.reduce((sum, log) => sum + log.amount, 0) / waterLogs.length)} ml</p>}
         {waterLogs.map((val, key) => (
           <li key={key}>
             <a>{format(val.date, 'E')}: {val.amount}</a>
