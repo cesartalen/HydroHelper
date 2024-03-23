@@ -1,6 +1,7 @@
 "use client"
 
 import { getWeekWaterLogs } from '@/actions/get-week-waterlogs'
+import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 
 export const WaterStatsPanel = ({userId} : {userId: any}) => {
@@ -14,13 +15,12 @@ export const WaterStatsPanel = ({userId} : {userId: any}) => {
   useEffect(() => {
     fetchWaterLogs()
   }, [])
-  
   return(
     <div className='rounded-xl border px-6 py-4 mx-6 md:w-1/4'>
       <ul>
         {waterLogs.map((val, key) => (
           <li key={key}>
-            <a>{val.date.getDay()}: {val.amount}</a>
+            <a>{format(val.date, 'E')}: {val.amount}</a>
           </li>
         ))}
       </ul>
