@@ -73,8 +73,8 @@ model VerificationToken {
 model WaterLog {
   id     String   @id @default(cuid()) @map("_id")
   date   DateTime @default(now())
-  user   User?    @relation(fields: [userId], references: [id])
-  userId String?
+  user   User     @relation(fields: [userId], references: [id])
+  userId String
   amount Int      @default(0)
 
   @@unique([userId, date])
