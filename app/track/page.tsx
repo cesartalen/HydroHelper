@@ -18,7 +18,7 @@ const TrackPage = () => {
     {(goal: number, waterPreset: number) => (
       <main className='flex break-all flex-col md:flex-row'>
         <WaterTracker userId={session?.user?.id} goal={goal} waterPreset={waterPreset} name={session?.user?.name} />
-        <WaterStatsPanel />
+        <WaterStatsPanel userId={session?.user?.id}/>
       </main>
     )}
   </PreferencesHandler>
