@@ -16,6 +16,17 @@ export const WaterWeeklyStats = ({userId} : {userId: any}) => {
     fetchWaterLogs()
   }, [])
 
+  const createWeekDates = () => {
+    const today = new Date()
+    today.setHours(0,0,0,0)
+    const prevWeekDates = []
+  
+    for (let i = 0; i < 7; i++) {
+      prevWeekDates.push(addDays(today, -i))
+    }
+  
+    return prevWeekDates
+  }
 
   return(
     <ul>
