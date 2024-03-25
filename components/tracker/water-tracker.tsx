@@ -1,5 +1,5 @@
 import { todayWaterlog } from '@/actions/today-waterlog'
-import { updateWater } from '@/actions/update-water'
+import { addWater } from '@/actions/add-water'
 import { signOut } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import { LoadingIndicator } from '../common/loading-indicator'
@@ -10,7 +10,7 @@ export const WaterTracker = ({name, userId, goal, waterPreset} : {name : any, us
   const [loading, setLoading] = useState(true)
 
   const handleWaterClick = async (amount: number) => {
-    await updateWater(userId, amount)
+    await addWater(userId, amount)
     await getWater()
   }
 

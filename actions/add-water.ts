@@ -3,7 +3,7 @@
 import { db } from '@/lib/db'
 import { todayWaterlog } from './today-waterlog'
 
-export const updateWater = async (userId: any, amount: number) => {
+export const addWater = async (userId: any, amount: number) => {
   const waterLog = await todayWaterlog(userId)
   const totalWater = waterLog.amount + amount
 
