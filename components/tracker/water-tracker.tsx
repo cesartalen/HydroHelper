@@ -44,7 +44,9 @@ export const WaterTracker = ({name, userId, goal, waterPreset} : {name : any, us
           </div>
           <button onClick={() => handleWaterClick(waterPreset, true)}>Update Water</button>
           <br />
-          <WaterUpdateCustom addWater={handleWaterClick} removeWater={handleWaterClick}/>
+          <div className='mt-16'>
+            <WaterUpdateCustom addWater={handleWaterClick} removeWater={handleWaterClick}/>
+          </div>
         </>
       )}
     </div>
