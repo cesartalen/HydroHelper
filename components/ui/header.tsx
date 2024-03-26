@@ -12,14 +12,15 @@ export const Header = () => {
           <a className="text-xl font-bold text-center bg-gradient-to-r from-cyan-300 to-sky-600 inline-block text-transparent bg-clip-text">
             HydroHelper
           </a>
-          <div>
-            <ul>
-              <li>
-                <button className=' border transition duration-300 ease-in-out hover:ring-2 hover:ring-cyan-500 rounded-full px-4 py-2' onClick={() => signOut()}>
+          <div className='flex flex-row space-x-2'>
+            <Link href="/settings" className=' border transition duration-300 ease-in-out hover:ring-2 hover:ring-cyan-500 rounded-full px-4 py-2'>
+                Settings
+            </Link>
+            <div>
+              <button className=' border transition duration-300 ease-in-out hover:ring-2 hover:ring-red-500 rounded-full px-4 py-2' onClick={() => signOut()}>
                     Logout
-                </button>
-              </li>
-            </ul>
+              </button>
+            </div>
           </div>
         </div>
       </header>
