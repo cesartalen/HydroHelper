@@ -38,13 +38,13 @@ export const WaterTracker = ({name, userId, goal, waterPreset} : {name : any, us
       ) : (
         <>
           <p>Welcome {name}!</p>
+          <p className='text-cyan-700 mb-2'>Change your goal/preset in settings</p>
           <p>{water}/{<span className="text-cyan-500">{goal}</span>} Todays goal</p>
           <div className="w-full bg-gray-200 rounded-full h-2.5">
             <div className="bg-cyan-500 h-2.5 rounded-full" style={{ width: `${Math.min((water * 100) / goal, 100)}%` }}></div>
           </div>
-          <button className=' block mx-auto mt-6 w-2/3 border transition duration-300 ease-in-out hover:ring-2 hover:ring-cyan-500  rounded-full px-4 py-2 w-20' onClick={() => handleWaterClick(waterPreset, true)}>Use Preset: {waterPreset}</button>
-          <br />
-          <div className='mt-16'>
+          <button className=' block mx-auto mt-6 border transition duration-300 ease-in-out hover:ring-2 hover:ring-cyan-500  rounded-full px-4 py-2' onClick={() => handleWaterClick(waterPreset, true)}>Use Preset: {waterPreset}</button>
+          <div>
             <WaterUpdateCustom addWater={handleWaterClick} removeWater={handleWaterClick}/>
           </div>
         </>
