@@ -37,8 +37,8 @@ export const WaterTracker = ({name, userId, goal, waterPreset} : {name : any, us
         <LoadingIndicator/>
       ) : (
         <>
-          <p>Welcome {name} : {userId}</p>
-          <p>{water}</p>
+          <p>Welcome {name}!</p>
+          <p>{water}/{<span className="text-cyan-500">{goal}</span>} Todays goal</p>
           <div className="w-full bg-gray-200 rounded-full h-2.5">
             <div className="bg-cyan-500 h-2.5 rounded-full" style={{ width: `${Math.min((water * 100) / goal, 100)}%` }}></div>
           </div>
