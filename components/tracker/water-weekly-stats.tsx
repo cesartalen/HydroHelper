@@ -1,6 +1,6 @@
 "use client"
 
-import { getWeekWaterLogs } from '@/actions/get-week-waterlogs'
+import { getWeekWaterLogs } from '@/actions/stats/get-week-waterlogs'
 import { addDays, format } from 'date-fns'
 import { useEffect, useState } from 'react'
 

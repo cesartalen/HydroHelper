@@ -1,10 +1,10 @@
-import { todayWaterlog } from '@/actions/today-waterlog'
-import { addWater } from '@/actions/add-water'
+import { todayWaterlog } from '@/actions/stats/today-waterlog'
+import { addWater } from '@/actions/tracker/add-water'
 import { signOut } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import { LoadingIndicator } from '../common/loading-indicator'
 import { WaterUpdateCustom } from './water-update-custom'
-import { removeWater } from '@/actions/remove-water'
+import { removeWater } from '@/actions/tracker/remove-water'
 
 export const WaterTracker = ({name, userId, goal, waterPreset} : {name : any, userId : any, goal: number, waterPreset: number }) => {
   const [water, setWater] = useState(0)

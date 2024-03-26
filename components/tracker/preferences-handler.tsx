@@ -1,4 +1,4 @@
-import { getPreferences } from '@/actions/get-preferences'
+import { getPreferences } from '@/actions/preferences/get-preferences'
 import { useEffect, useState } from 'react'
 
 export const PreferencesHandler = ({ userId, children } : { userId : any, children : any }) => {

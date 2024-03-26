@@ -1,7 +1,7 @@
 "use server"
 
 import { db } from '@/lib/db'
-import { todayWaterlog } from './today-waterlog'
+import { todayWaterlog } from '../stats/today-waterlog'
 
 export const addWater = async (userId: any, amount: number) => {
   const waterLog = await todayWaterlog(userId)
