@@ -1,8 +1,9 @@
 "use client"
 
 import { getWeekWaterLogs } from '@/actions/stats/get-week-waterlogs'
+import { WaterContext } from '@/context/water-provider'
 import { addDays, format } from 'date-fns'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 const createWeekDates = () => {
   const today = new Date()
@@ -17,7 +18,7 @@ const createWeekDates = () => {
 }
 
 export const WaterWeeklyStats = ({userId} : {userId: any}) => {
-  const [waterLogs, setWaterLogs] = useState<any[]>([])
+  const { waterLogs, setWaterLogs } = useContext(WaterContext)
 
   const fetchWaterLogs = async () => {
     const logs = await getWeekWaterLogs(userId)
@@ -25,7 +26,9 @@ export const WaterWeeklyStats = ({userId} : {userId: any}) => {
   }
 
   useEffect(() => {
-    fetchWaterLogs()
+    if(!waterLogs.length) {
+      fetchWaterLogs()
+    }
   }, [])
 
   const prevWeekDays = createWeekDates()
