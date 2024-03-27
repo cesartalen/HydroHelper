@@ -5,6 +5,7 @@ import { SessionProvider } from 'next-auth/react';
 import { auth } from '@/auth';
 import { Header } from '@/components/ui/header';
 import { PreferencesProvider } from '@/context/preferences-provider';
+import { WaterProvider } from '@/context/water-provider';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,7 +29,9 @@ export default async function RootLayout({
             <div className='max-w-xl mx-auto xl:max-w-4xl md:max-w-3xl'>
               <Header/>
               <PreferencesProvider>
-                {children}
+                <WaterProvider>
+                  {children}
+                </WaterProvider>
               </PreferencesProvider>
             </div>
           </>
