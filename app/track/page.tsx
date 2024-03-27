@@ -1,6 +1,5 @@
 "use client"
 
-import { PreferencesHandler } from '@/components/tracker/preferences-handler'
 import { WaterStatsPanel } from '@/components/tracker/water-stats-panel'
 import { WaterTracker } from '@/components/tracker/water-tracker'
 import { useSession } from 'next-auth/react'
