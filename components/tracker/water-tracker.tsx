@@ -1,14 +1,26 @@
 import { todayWaterlog } from '@/actions/stats/today-waterlog'
 import { addWater } from '@/actions/tracker/add-water'
 import { signOut } from 'next-auth/react'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { LoadingIndicator } from '../common/loading-indicator'
 import { WaterUpdateCustom } from './water-update-custom'
 import { removeWater } from '@/actions/tracker/remove-water'
+import { PreferencesContext } from '@/context/preferences-provider'
+import { getPreferences } from '@/actions/preferences/get-preferences'
 
-export const WaterTracker = ({name, userId, goal, waterPreset} : {name : any, userId : any, goal: number, waterPreset: number }) => {
+export const WaterTracker = ({name, userId} : {name : any, userId : any}) => {
+  const { goal, setGoal, preset, setPreset } = useContext(PreferencesContext)
   const [water, setWater] = useState(0)
   const [loading, setLoading] = useState(true)
+
+  const updatePreferences = async () => {
+    const preferences = await getPreferences(userId)
+
+    setGoal(preferences.dailyGoal)
+    setPreset(preferences.waterPreset)
+
+    setLoading(false)
+  }
 
   const handleWaterClick = async (amount: number, inc: boolean) => {
     if(inc) {
@@ -29,6 +41,13 @@ export const WaterTracker = ({name, userId, goal, waterPreset} : {name : any, us
 
   useEffect(() => {
     getWater()
+
+    if(!goal || !preset) {
+      updatePreferences()
+      setLoading(false)
+    } else {
+      setLoading(false)
+    }
   }, [userId])
 
   return (
@@ -43,7 +62,7 @@ export const WaterTracker = ({name, userId, goal, waterPreset} : {name : any, us
           <div className="w-full bg-gray-200 rounded-full h-2.5">
             <div className="bg-cyan-500 h-2.5 rounded-full" style={{ width: `${Math.min((water * 100) / goal, 100)}%` }}></div>
           </div>
-          <button className=' block mx-auto mt-6 border transition duration-300 ease-in-out hover:ring-2 hover:ring-cyan-500  rounded-full px-4 py-2' onClick={() => handleWaterClick(waterPreset, true)}>Use Preset: {waterPreset}</button>
+          <button className=' block mx-auto mt-6 border transition duration-300 ease-in-out hover:ring-2 hover:ring-cyan-500  rounded-full px-4 py-2' onClick={() => handleWaterClick(preset, true)}>Use Preset: {preset}</button>
           <div>
             <WaterUpdateCustom addWater={handleWaterClick} removeWater={handleWaterClick}/>
           </div>
