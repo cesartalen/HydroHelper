@@ -3,7 +3,7 @@
 import { createContext, useState } from 'react'
 
 
-interface PreferencesContextType {
+type PreferencesContextType = {
   goal: any
   setGoal: React.Dispatch<any>
   preset: any
