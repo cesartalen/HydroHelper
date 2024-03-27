@@ -4,6 +4,7 @@ import "./globals.css";
 import { SessionProvider } from 'next-auth/react';
 import { auth } from '@/auth';
 import { Header } from '@/components/ui/header';
+import { PreferencesProvider } from '@/context/preferences-provider';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +27,9 @@ export default async function RootLayout({
           <>
             <div className='max-w-xl mx-auto xl:max-w-4xl md:max-w-3xl'>
               <Header/>
-              {children}
+              <PreferencesProvider>
+                {children}
+              </PreferencesProvider>
             </div>
           </>
           ) : (
