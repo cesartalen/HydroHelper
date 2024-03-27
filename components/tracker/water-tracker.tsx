@@ -7,10 +7,11 @@ import { WaterUpdateCustom } from './water-update-custom'
 import { removeWater } from '@/actions/tracker/remove-water'
 import { PreferencesContext } from '@/context/preferences-provider'
 import { getPreferences } from '@/actions/preferences/get-preferences'
+import { WaterContext } from '@/context/water-provider'
 
 export const WaterTracker = ({name, userId} : {name : any, userId : any}) => {
   const { goal, setGoal, preset, setPreset } = useContext(PreferencesContext)
-  const [water, setWater] = useState(0)
+  const { water, setWater, waterLog, setWaterLog } = useContext(WaterContext)
   const [loading, setLoading] = useState(true)
 
   const updatePreferences = async () => {
@@ -34,13 +35,16 @@ export const WaterTracker = ({name, userId} : {name : any, userId : any}) => {
 
   const getWater = async () => {
     const waterData = await todayWaterlog(userId)
+    setWaterLog(waterData)
     const amount = waterData.amount
     setWater(amount)
     setLoading(false)
   }
 
   useEffect(() => {
-    getWater()
+    if(!waterLog.id) {
+      getWater()
+    }
 
     if(!goal || !preset) {
       updatePreferences()
