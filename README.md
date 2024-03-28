@@ -1,8 +1,14 @@
-# Hydration Helper
+# Hydro Helper
 
-Hydration Helper is a web application built to aid your daily water intake. It's built with Next.js and MongoDB.
+Hydro Helper is a web application built to aid your daily water intake. It's built with Next.js and MongoDB.
 
-hydro-helper.vercel.app
+[Hydro Helper](hydro-helper.vercel.app)
+
+*Preview as an authenticated user*
+
+![image](https://github.com/cesartalen/HydroHelper/assets/154442565/94f40be5-5da5-41d3-852f-1249fc2b1885)
+
+
 
 ## Features
 
@@ -11,6 +17,7 @@ hydro-helper.vercel.app
 - Set a preset button to match the amount of your favorite cup for fast updates
 - Manual input(ml)
 - View your recent hydration statistics
+- Responsive design
 
 ## Getting Started
 
