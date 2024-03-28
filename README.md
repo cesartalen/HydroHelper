@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hydration Helper
+
+Hydration Helper is a web application built to aid your daily water intake. It's built with Next.js and MongoDB.
+
+hydro-helper.vercel.app
+
+## Features
+
+- Monitor your hydration intake
+- Set goals for minimum daily water intake
+- Set a preset button to match the amount of your favorite cup for fast updates
+- Manual input(ml)
+- View your recent hydration statistics
 
 ## Getting Started
 
-First, run the development server:
+For running this project yourself
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js
+- MongoDB database
+- Github Oauth key (can also be easily modified to use other authjs providers `https://authjs.dev/getting-started/providers` )
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone the repo
+   ````sh
+   git clone https://github.com/cesartalen/HydroHelper.git```
+   ````
+2. Install NPM packages
+   ```
+   npm install
+   ```
+3. Create an .env in the root folder and include the following
 
-## Learn More
+   ```
+   DATABASE_URL="mongodburl"
+   AUTH_SECRET="secret"
 
-To learn more about Next.js, take a look at the following resources:
+   GITHUB_CLIENT_SECRET="secret"
+   GITHUB_CLIENT_ID="id"
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Run the following command
+   ```
+   npx prisma generate
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Usage
 
-## Deploy on Vercel
+Run the development server with
+`npm run dev`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+And stay hydrated!
