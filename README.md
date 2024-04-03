@@ -2,7 +2,7 @@
 
 Hydro Helper is a web application built to aid your daily water intake. It's built with Next.js and MongoDB.
 
-[Hydro Helper](hydro-helper.vercel.app)
+[Hydro Helper](http://hydro-helper.vercel.app)
 
 *Preview as an authenticated user*
 
